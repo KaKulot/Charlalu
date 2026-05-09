@@ -1,0 +1,67 @@
+@model LibrarySystem.Models.BorrowRecord
+
+@{
+    ViewData["Title"] = "Add Borrow Record";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-plus-circle me-2"></i>Add New Borrow Record</h5>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="BorrowerName" class="form-label fw-semibold"></label>
+                        <input asp-for="BorrowerName" class="form-control" placeholder="Enter full name of borrower" />
+                        <span asp-validation-for="BorrowerName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="BookTitle" class="form-label fw-semibold"></label>
+                        <input asp-for="BookTitle" class="form-control" placeholder="Enter book title" />
+                        <span asp-validation-for="BookTitle" class="text-danger small"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="BorrowDate" class="form-label fw-semibold"></label>
+                            <input asp-for="BorrowDate" class="form-control" type="date" />
+                            <span asp-validation-for="BorrowDate" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="ReturnDate" class="form-label fw-semibold"></label>
+                            <input asp-for="ReturnDate" class="form-control" type="date" />
+                            <span asp-validation-for="ReturnDate" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Status" class="form-label fw-semibold"></label>
+                        <select asp-for="Status" class="form-select">
+                            <option value="Borrowed">Borrowed</option>
+                            <option value="Returned">Returned</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save me-1"></i>Save Record
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i>Back to List
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
